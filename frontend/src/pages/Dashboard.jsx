@@ -1,78 +1,36 @@
- import { Link } from "react-router-dom";
- function Dashboard() {
+ import { FaBoxOpen, FaShoppingCart, FaChartLine, FaRobot } from "react-icons/fa";
+ import "./Dashboard.css";
+
+function Dashboard() {
   return (
-    <div style={{ padding: "30px", fontFamily: "Arial" }}>
-      <h1>🛒 Smart Cart Optimization Dashboard</h1>
-      <p>Welcome to our Smart Cart Optimization System.</p>
+    <div>
+      <h1>Dashboard</h1>
+      <p>Welcome to Smart Cart Optimization Engine</p>
 
-      <hr />
-
-    <div
-     style={{
-          display: "flex",
-          gap: "20px",
-          marginTop: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-         <Link
-  to="/products"
-  style={{ textDecoration: "none", color: "inherit" }}
->
-  <div
-    style={{
-      border: "1px solid #ccc",
-      padding: "20px",
-      borderRadius: "10px",
-      width: "220px",
-    }}
-  >
-          <h2>📦 Products</h2>
-          <p>Manage all products.</p>
+      <div className="cards">
+        <div className="card">
+          <h2><FaBoxOpen size={42} color="#2563EB" /></h2>
+          <h3>Products</h3>
+          <p>120</p>
         </div>
-        </Link>
 
-<Link to="/cart" style={{ textDecoration: "none", color: "inherit" }}>
- <div
-          style={{
-            border: "1px solid #ccc",
-            padding: "20px",
-            borderRadius: "10px",
-            width: "220px",
-          }}
-        >
-          <h2>🛍 Cart</h2>
-          <p>View customer cart.</p>
+        <div className="card">
+          <h2><FaShoppingCart size={42} color="#16A34A" /></h2>
+          <h3>Cart Items</h3>
+          <p>24</p>
         </div>
-        </Link>
 
-<Link to="/recommendations" style={{ textDecoration: "none", color: "inherit" }}>
-        <div
-          style={{
-            border: "1px solid #ccc",
-            padding: "20px",
-            borderRadius: "10px",
-            width: "220px",
-          }}
-        >
-          <h2>⭐ Recommendations</h2>
-          <p>AI suggested products.</p>
+        <div className="card">
+          <h2><FaChartLine size={42} color="#F97316" /></h2>
+          <h3>Analytics</h3>
+          <p>85%</p>
         </div>
-        </Link>
 
-<Link to="/analytics" style={{ textDecoration: "none", color: "inherit" }}>
-        <div
-          style={{
-            border: "1px solid #ccc",
-            padding: "20px",
-            borderRadius: "10px",
-            width: "220px",
-          }}
-        >
-          <h2>📊 Analytics</h2>
-          <p>View shopping analytics.</p>
+        <div className="card">
+          <h2><FaRobot size={42} color="#9333EA" /></h2>
+          <h3>Recommendations</h3>
+          <p>18</p>
         </div>
-        </Link>
       </div>
     </div>
   );

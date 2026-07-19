@@ -1,3 +1,5 @@
+
+import Layout from "./components/layout/Layout";
 import Navbar from "./components/layout/Navbar";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -15,40 +17,41 @@ function App() {
 
   return (
     <>
-      <Navbar />
+    <Layout>
+  <Routes>
+    <Route path="/" element={<Dashboard />} />
 
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-
-        <Route
-          path="/products"
-          element={
-            <ProductCatalog
-              cart={cart}
-              setCart={setCart}
-            />
-          }
+    <Route
+      path="/products"
+      element={
+        <ProductCatalog
+          cart={cart}
+          setCart={setCart}
         />
-        <Route
-  path="/cart"
-  element={
-    <CartPage
-      cart={cart}
-      setCart={setCart}
+      }
     />
-  }
-/>
 
-        <Route
-          path="/analytics"
-          element={<AnalyticsPage />}
+    <Route
+      path="/cart"
+      element={
+        <CartPage
+          cart={cart}
+          setCart={setCart}
         />
+      }
+    />
 
-        <Route
-          path="/recommendations"
-          element={<RecommendationsPage />}
-        />
-      </Routes>
+    <Route
+      path="/analytics"
+      element={<AnalyticsPage />}
+    />
+
+    <Route
+      path="/recommendations"
+      element={<RecommendationsPage />}
+    />
+  </Routes>
+</Layout>
     </>
   );
 }
