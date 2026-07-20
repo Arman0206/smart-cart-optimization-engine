@@ -16,13 +16,15 @@ const removeFromCart = (indexToRemove) => {
       }}
     >
       <h1
-        style={{
-          textAlign: "center",
-          marginBottom: "30px",
-        }}
-      >
-        🛒 Shopping Cart
-      </h1>
+  style={{
+    fontSize: "48px",
+    fontWeight: "700",
+    marginBottom: "30px",
+    color: "#222",
+  }}
+>
+  🛒 Shopping Cart
+</h1>
 
       {cart.length === 0 ? (
         <h2 style={{ textAlign: "center" }}>Your cart is empty.</h2>
@@ -35,11 +37,12 @@ const removeFromCart = (indexToRemove) => {
                 display: "flex",
                 alignItems: "center",
                 gap: "20px",
-                border: "1px solid #ddd",
-                borderRadius: "10px",
+                boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+                borderRadius: "16px",
                 padding: "15px",
                 marginBottom: "15px",
                 backgroundColor: "white",
+                transition:"0.3s"
               }}
             >
               <img
@@ -62,13 +65,9 @@ const removeFromCart = (indexToRemove) => {
                 <button
   onClick={() => removeFromCart(index)}
   style={{
-    marginTop: "10px",
-    backgroundColor: "#dc3545",
-    color: "white",
-    border: "none",
-    padding: "10px 15px",
-    borderRadius: "8px",
-    cursor: "pointer",
+    backgroundColor: "#ef4444",
+padding: "10px 18px",
+fontWeight: "600",
   }}
 >
   ❌ Remove
@@ -79,7 +78,17 @@ const removeFromCart = (indexToRemove) => {
 
           <hr />
 
-          <h2>Total Price: ₹{totalPrice}</h2>
+          <div
+  style={{
+    marginTop: "30px",
+    background: "white",
+    padding: "20px",
+    borderRadius: "16px",
+    boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+  }}
+>
+  <h2>Total Price: ₹{totalPrice}</h2>
+</div>
         </>
       )}
     </div>

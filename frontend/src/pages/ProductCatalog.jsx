@@ -1,3 +1,4 @@
+ import "./ProductCatalog.css";
  import { useState } from "react";
  import laptopImg from "../assets/images/laptop.jpg";
 import mouseImg from "../assets/images/mouse.avif";
@@ -87,69 +88,46 @@ const addToCart = (product) => {
     minHeight: "100vh",
   }}
 >
-  <h1
-  style={{
-    textAlign: "center",
-    marginBottom: "30px",
-    fontSize: "48px",
-    color: "#222",
-  }}
->
-  🛍️ Product Catalog
-</h1>
- <input
-  type="text"
-  placeholder="🔍 Search products..."
-  value={search}
-onChange={(e) => setSearch(e.target.value)}
-  style={{
-    width: "300px",
-    padding: "12px",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    fontSize: "15px",
-  }}
-/>
-<select
-  value={category}
-  onChange={(e) => setCategory(e.target.value)}
-  style={{
-    padding: "12px",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    fontSize: "15px",
-  }}
->
-  <option>All Categories</option>
-  <option>Electronics</option>
-  <option>Accessories</option>
-</select>
-<select
-  value={brand}
-  onChange={(e) => setBrand(e.target.value)}
-  style={{
-    padding: "12px",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    fontSize: "15px",
-  }}
->
-  <option>All Brands</option>
-  <option>Dell</option>
-  <option>Logitech</option>
-  <option>Samsung</option>
-  <option>Sony</option>
-  <option>HP</option>
-</select>
 
-    <div
-      style={{
-        display: "flex",
-        gap: "20px",
-        flexWrap: "wrap",
-        marginTop: "20px",
-      }}
-    >
+ <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "15px",
+    margin: "20px 0 30px",
+    flexWrap: "wrap",
+  }}
+>
+  <input
+    className="search-input"
+    type="text"
+    placeholder="🔍 Search products..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+
+  <select
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+  >
+    <option>All Categories</option>
+    <option>Electronics</option>
+    <option>Accessories</option>
+  </select>
+
+  <select
+    value={brand}
+    onChange={(e) => setBrand(e.target.value)}
+  >
+    <option>All Brands</option>
+    <option>Dell</option>
+    <option>Logitech</option>
+    <option>Samsung</option>
+    <option>Sony</option>
+    <option>HP</option>
+  </select>
+</div>
+<div className="product-grid">
     {filteredProducts.length > 0 ? (
   filteredProducts.map((product) => (
     <ProductCard

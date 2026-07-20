@@ -1,3 +1,5 @@
+import "./Layout.css";
+import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 function Layout({ children }) {
@@ -11,14 +13,14 @@ function Layout({ children }) {
     >
       <Sidebar />
 
-      <div
-        style={{
-          flex: 1,
-          marginLeft: "270px",
-          padding: "30px",
-        }}
-      >
+      <div className="main-content">
+    <>
+    <Header />
+
+    <div className="content">
         {children}
+    </div>
+</>
       </div>
     </div>
   );
