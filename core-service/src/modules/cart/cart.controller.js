@@ -1,3 +1,4 @@
+
 const cartService = require('./cart.service');
 
 const addToCart = async (req, res, next) => {
@@ -30,8 +31,18 @@ const removeFromCart = async (req, res, next) => {
   }
 };
 
+const getPopularity = async (req, res, next) => {
+  try {
+    const popularity = await cartService.getProductPopularity();
+    res.json(popularity);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   addToCart,
   getCart,
-  removeFromCart
+  removeFromCart,
+  getPopularity
 };
