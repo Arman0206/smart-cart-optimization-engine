@@ -1,4 +1,6 @@
- import "./Header.css";
+ import { useState, useRef, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import "./Header.css";
 
 import {
     FaBell,
@@ -7,6 +9,36 @@ import {
 } from "react-icons/fa";
 
 function Header(){
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const currentSearch = searchParams.get("search") || "";
+
+    const [notifOpen, setNotifOpen] = useState(false);
+    const [profileOpen, setProfileOpen] = useState(false);
+
+    const notifRef = useRef(null);
+    const profileRef = useRef(null);
+
+    // Close either dropdown when clicking outside of it
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (notifRef.current && !notifRef.current.contains(event.target)) {
+                setNotifOpen(false);
+            }
+            if (profileRef.current && !profileRef.current.contains(event.target)) {
+                setProfileOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        const params = new URLSearchParams();
+        if (value) params.set("search", value);
+        navigate(`/products?${params.toString()}`, { replace: true });
+    };
 
     return(
 
@@ -14,20 +46,57 @@ function Header(){
 
             <div className="search-box">
 
-                <FaSearch/>
+                <FaSearch className="search-icon"/>
 
                 <input
+                    className="header-search"
                     type="text"
                     placeholder="Search products..."
+                    value={currentSearch}
+                    onChange={handleSearchChange}
                 />
 
             </div>
 
             <div className="header-right">
 
-                <FaBell className="header-icon"/>
+                <div className="notification" ref={notifRef}>
+                    <FaBell
+                        className="header-icon"
+                        onClick={() => {
+                            setNotifOpen((prev) => !prev);
+                            setProfileOpen(false);
+                        }}
+                    />
 
-                <FaUserCircle className="profile-icon"/>
+                    {notifOpen && (
+                        <div className="dropdown-panel">
+                            <h4>Notifications</h4>
+                            <p className="dropdown-empty">
+                                You're all caught up — no new notifications yet.
+                            </p>
+                        </div>
+                    )}
+                </div>
+
+                <div className="profile" ref={profileRef}>
+                    <FaUserCircle
+                        className="profile-icon"
+                        onClick={() => {
+                            setProfileOpen((prev) => !prev);
+                            setNotifOpen(false);
+                        }}
+                    />
+
+                    {profileOpen && (
+                        <div className="dropdown-panel">
+                            <h4>Guest User</h4>
+                            <p className="dropdown-empty">
+                                You're browsing as a guest. Sign-in isn't set up yet.
+                            </p>
+                        </div>
+                    )}
+                </div>
 
             </div>
 

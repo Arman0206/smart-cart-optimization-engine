@@ -83,6 +83,7 @@
     align-items:center;
     gap:12px;
     cursor:pointer;
+    position:relative;
 }
 
 .profile-icon{
@@ -99,4 +100,29 @@
 .profile-info span{
     font-size:13px;
     color:#6b7280;
+}
+
+.dropdown-panel{
+    position:absolute;
+    top:calc(100% + 14px);
+    right:0;
+    width:260px;
+    background:white;
+    border-radius:14px;
+    box-shadow:0 12px 30px rgba(15,23,42,.15);
+    padding:18px;
+    z-index:50;
+}
+
+.dropdown-panel h4{
+    margin:0 0 8px;
+    font-size:15px;
+    color:#111827;
+}
+
+.dropdown-empty{
+    margin:0;
+    font-size:13px;
+    color:#6b7280;
+    line-height:1.5;
 }

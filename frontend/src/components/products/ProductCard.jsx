@@ -1,4 +1,9 @@
-function ProductCard({ image, name, brand, category, price, rating, onAddToCart, }) {
+import { useState } from "react";
+
+function ProductCard({ image, name, brand, category, price, rating, added, onAddToCart, }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const showPlaceholder = !image || imgFailed;
+
   return (
     <div
       style={{
@@ -8,18 +13,40 @@ function ProductCard({ image, name, brand, category, price, rating, onAddToCart,
         width: "240px",
         backgroundColor: "white",
         boxShadow: "0 6px 15px rgba(0,0,0,0.15)",
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
       }}
     >
-      <img
-        src={image}
-        alt={name}
-        style={{
-          width: "100%",
-          height: "150px",
-          objectFit: "contain",
-          marginBottom: "10px",
-        }}
-      />
+      {showPlaceholder ? (
+        <div
+          style={{
+            width: "100%",
+            height: "150px",
+            marginBottom: "10px",
+            borderRadius: "8px",
+            background: "#eef4ff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "48px",
+          }}
+        >
+          📦
+        </div>
+      ) : (
+        <img
+          src={image}
+          alt={name}
+          onError={() => setImgFailed(true)}
+          style={{
+            width: "100%",
+            height: "150px",
+            objectFit: "contain",
+            marginBottom: "10px",
+          }}
+        />
+      )}
 
       <h3>{name}</h3>
 
@@ -29,19 +56,21 @@ function ProductCard({ image, name, brand, category, price, rating, onAddToCart,
       <p>⭐ {rating}</p>
 
       <button
-      onClick={onAddToCart}
+        onClick={onAddToCart}
+        disabled={added}
         style={{
-          backgroundColor: "#007bff",
+          backgroundColor: added ? "#16a34a" : "#007bff",
           color: "white",
           border: "none",
           padding: "10px 15px",
           borderRadius: "8px",
-          cursor: "pointer",
+          cursor: added ? "default" : "pointer",
           width: "100%",
           fontWeight: "bold",
+          marginTop: "auto",
         }}
       >
-        🛒 Add to Cart
+        {added ? "✓ Added" : "🛒 Add to Cart"}
       </button>
     </div>
   );
